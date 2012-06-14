@@ -1,0 +1,20 @@
+{
+  "author": "Alejandro Morales <vamg008@gmail.com> (http://alejandromorales.co.cc)",
+  "name": "default",
+  "description": "Default app for nodester",
+  "version": "0.0.0",
+  "private": true,
+  "homepage": "http://nodester.com",
+  "repository": {
+    "url": "defaultapp"
+  },
+  "main": "server.js",
+  "dependencies": {
+    "express": "~2.5.9"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
