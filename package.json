@@ -5,6 +5,7 @@
   "version": "0.0.0",
   "private": true,
   "homepage": "http://nodester.com",
+  "node":"0.6.17",
   "repository": {
     "url": "defaultapp"
   },
