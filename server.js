@@ -22,6 +22,11 @@ app.get('/', function(req,res){
 	fs.createReadStream(__dirname + '/index.html').pipe(res);
 });
 
+app.get('/version', function(req,res){
+	res.writeHeader(200, {'Content-type':'application/json'});
+	res.end('{"version":"'+ process.version +'"}');
+})
+
 app.get('*', function(req,res){
 	res.statusCode = 404;
 	res.end(':: not found ::');

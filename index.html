@@ -30,14 +30,14 @@
 		top:30px;
 		text-align:center;
 	}
-
-
 	a {
 		text-decoration:none;
 	} 
-
+	ul {
+		padding-bottom:10px;
+	}
 	.box {
-		width:27em;
+		width:24em;
 		padding:50px 10px 30px 10px;
 		margin-bottom: 45px;
 		border-top: 1px solid #C9C9C9;
@@ -66,6 +66,10 @@
 		#CCC;
 		min-height: 10px;
 		background:whiteSmoke;
+		border-bottom:10px;
+	}
+	#local {
+		font-family:monospace;
 	}
   </style>
 </head>
@@ -76,11 +80,12 @@
       <img src="/rocket-md-right.png">
     </div>
     <div class="rocket">
-      <h2>Welcome to Nodester!</h2>
+      <h2>Welcome to Nodester</h2>
+      <p>We are happy to have you!</p>
       <br />
     </div>
     <div id="login-status">
-	  <h3>Some stuff that you can do:</h3>
+	  <h3>Some stuff you can do now:</h3>
 	  <ul>
 	  	<li>Replace the content on <code>server.js</code></li>
 	  	<li>play with this file (<code>index.html</code>)</li>
@@ -89,13 +94,33 @@
 				<li><a href="http://blog.nodester.com/post/3634535277/running-websockets-on-nodester">Websockets on nodester</a></li>
 				<li><a href="http://blog.nodester.com/post/19902515151/tips-for-windows-users">Tips for Windows Users</a></li>
 				<li>We run multiple node-versions. <a href="http://blog.nodester.com/post/18702499832/nodester-now-running-node-js-0-6-12">Learn how you can use it</a></li>
+				<li>Read our <a href="https://github.com/nodester/nodester/wiki/">Wiki</a></li>
 			</ul>
 	  	</li>
+
 	  </ul>
+	 
 	</div>
+<span id="local"> Running on node-<span id="version"></small></span>	
   </div>
   
 </div>
+<script type="text/javascript">
 
+window.onload = function(){
+	var req = new XMLHttpRequest();  
+	req.open('GET',window.location + 'version', true);  
+	req.send();  
+	req.addEventListener('load', function(e){
+		try {
+			var r = JSON.parse(req.responseText);
+			document.getElementById('version').innerText  = r.version || '0.6.17'
+		} catch(e){
+			console.log(e);
+		}
+	})
+}
+
+</script>
 </body>
 </html>
