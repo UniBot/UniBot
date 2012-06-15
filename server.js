@@ -1,4 +1,5 @@
 /**
+ * APPNAME
  * Default app for nodester
  * @license MIT
 */
@@ -32,6 +33,8 @@ app.get('*', function(req,res){
 	res.end(':: not found ::');
 });
 
-app.listen(process.env['app_port'] || 3000 , function(){
+var PORT = process.env['app_port'] || APPPORT;
+
+app.listen( PORT , function(){
 	console.log(':: nodester :: \n\nApp listening on port %s', this.address().port)
 });
