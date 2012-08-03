@@ -43,13 +43,15 @@ jerk( function( j ) {
 	});
 	
 	// List all active commands
-	j.watch_for( '!list', function ( message ) {
+	j.watch_for( /^!list/i, function ( message ) {
 		message.say( 'Existing Commands: ' + Object.keys(list).join(', ') );
 	});
 	
 	// ![nonSpace] [optional arg] [@optionalNick @anotherNick]
 	j.watch_for( /^!(\S+)( ([-\s\+\w]+))?(( @\S+)*)$/i , function ( message ) {
-		var msg = list[message.match_data[1]];
+		var key = message.match_data[1];
+		key = key.toLowerCase();
+		var msg = list[key];
 		if (msg) {
 			var user = message.user;
 			// cutoff @ if @target is passed
@@ -66,7 +68,9 @@ jerk( function( j ) {
 	
 	// !remember [nonSpace] id [value containing optional :nick and :arg]
 	j.watch_for( /^!remember (\S+) is (.+)/i, function ( message ) {
-		var cmd = new command({ key: message.match_data[1], value: message.match_data[2] });
+		var key = message.match_data[1];
+		key = key.toLowerCase();
+		var cmd = new command({ key: key, value: message.match_data[2] });
 		if (list[cmd.key]) {
 			message.say( message.user + ': "'+cmd.key+'" already exists');
 			return;
@@ -80,6 +84,7 @@ jerk( function( j ) {
 	// !forget [nonSpace]
 	j.watch_for( /^!forget (\S+)/i, function ( message ) {
 		var key = message.match_data[1];
+		key = key.toLowerCase();
 		command.remove({ key: key }, function(err) {
 			delete list[key];
 			message.say( 'The "'+key+'" command has been removed' );
@@ -89,6 +94,7 @@ jerk( function( j ) {
 	// !show [nonSpace]
 	j.watch_for( /^!show (\S+)/i, function ( message ) {
 		var key = message.match_data[1];
+		key = key.toLowerCase();
 		message.say( key+' is "'+list[key]+'"' );
 	});
 }).connect(options);
