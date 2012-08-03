@@ -1,16 +1,11 @@
 {
   "author": "proloser",
   "name": "ui-bot",
-  "subdomain": "angular-ui",
   "description": "IRC bot for irc.freeonode.net/angularjs",
   "version": "0.1.0",
   "private": true,
   "homepage": "http://angular-ui.github.com",
-  "node": "0.8.x",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:angular-ui/ui-bot.git"
-  },
+  "node": "0.8.1",
   "main": "server.js",
   "dependencies": {
     "jerk": "~1.1.23",
