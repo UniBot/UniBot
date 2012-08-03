@@ -1,38 +1,14 @@
-# Nodester
-Hack the Planet!
+# IRC Bot for #AngularJS
 
+### Notes
 
-> The Open Source node.js PaaS
+1. Please don't abuse the mongoDB credentials. I'm too lazy to hide them.
+2. Only ProLoser can deploy the IRC bot to Nodejitsu. Currently, Nodejitsu's IP is banned from freenode, so until it is unbanned (should be soon), it must be run locally
+3. Nodejitsu expects a webserver to run, that is the only purpose for it at the bottom.
+4. We may re-use this project for also hosting/building the website on its own server
 
+## Development
 
-## Welcome to Nodester
-
-We are happy to have you.
-
-Here are some thing you can do know:
-
-- Edit the `server.js` file and see the logic behind express.
-- Edit `index.html` with your stuff
-- Promote nodester :P
-
-
-### About nodester
-
-- [Websockets on nodester](http://blog.nodester.com/post/3634535277/running-websockets-on-nodester)
-- [Tips for Windows Users](http://blog.nodester.com/post/19902515151/tips-for-windows-users)
-- We run multiple node versions. [Learn How!](http://blog.nodester.com/post/18702499832/nodester-now-running-node-js-0-6-12)
-- Read our [Wiki](https://github.com/nodester/nodester/wiki/)
-
-### Did you find a problem?
-
-Reach us on:
-
-- [twitter](http://twitter.com/nodester)
-- [Github](http://github.com/nodester/nodester/issues)
-- [IRC](http://irc.nodester.com) (freenode#nodester)
-- [Google Grups](https://groups.google.com/forum/?fromgroups#!forum/nodester)
-
-### [Fork us](http://github.com/nodester/nodester/)
-
-
-
+1. Customize the `options` variable (you may want to turn logging on)
+2. `npm install`
+3. `node server.js`
