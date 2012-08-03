@@ -1,11 +1,11 @@
 {
-  "author": "Alejandro Morales <vamg008@gmail.com> (http://alejandromorales.co.cc)",
-  "name": "default",
+  "author": "proloser",
+  "name": "ui-bot",
   "description": "Default app for nodester",
   "version": "0.0.0",
   "private": true,
-  "homepage": "http://nodester.com",
-  "node": "0.8.0",
+  "homepage": "http://ui-bot.nodester.com",
+  "node": "0.8.1",
   "repository": {
     "url": "defaultapp"
   },
