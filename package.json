@@ -1,17 +1,20 @@
 {
   "author": "proloser",
   "name": "ui-bot",
-  "description": "Default app for nodester",
-  "version": "0.0.0",
+  "subdomain": "angular-ui",
+  "description": "IRC bot for irc.freeonode.net/angularjs",
+  "version": "0.1.0",
   "private": true,
-  "homepage": "http://ui-bot.nodester.com",
-  "node": "0.8.1",
+  "homepage": "http://angular-ui.github.com",
+  "node": "0.8.x",
   "repository": {
-    "url": "defaultapp"
+    "type": "git",
+    "url": "git@github.com:angular-ui/ui-bot.git"
   },
   "main": "server.js",
   "dependencies": {
-    "express": "~2.5.9"
+    "jerk": "~1.1.23",
+    "mongoose": "~2.7.2"
   },
   "devDependencies": {},
   "optionalDependencies": {},
