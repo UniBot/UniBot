@@ -47,20 +47,20 @@ jerk( function( j ) {
 		message.say( 'Existing Commands: ' + Object.keys(list).join(', ') );
 	});
 	
-	// ![nonSpace] [optional arg] [@optionalNick @anotherNick]
-	j.watch_for( /^!(\S+)( ([-\s\+\w]+))?(( @\S+)*)$/i , function ( message ) {
+	// ![nonSpace] [optional arg] [@optionalNick]
+	j.watch_for( /!(\S+)([^@]+)?(?:@(\S+))?/i , function ( message ) {
 		var key = message.match_data[1];
 		key = key.toLowerCase();
 		var msg = list[key];
 		if (msg) {
 			var user = message.user;
 			// cutoff @ if @target is passed
-			if (message.match_data[4])
-				user = message.match_data[4].substr(1).split('@').join('');
-			var arg = message.match_data[3] || '';
+			if (message.match_data[3])
+				user = message.match_data[3];
+			var arg = message.match_data[2] || '';
 			// convert spaces in arg to + character
 			if (arg) {
-				arg = arg.split(' ').join('+');
+				arg = arg.trim().split(' ').join('+');
 			}
 			message.say( msg.split(':nick').join(user).split(':arg').join(arg) );
 		}
