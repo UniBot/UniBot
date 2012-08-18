@@ -1,22 +1,22 @@
 {
-  "author": "proloser",
-  "name": "ui-bot",
-  "description": "IRC bot for irc.freeonode.net/angularjs",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": "http://angular-ui.github.com",
-  "node": "0.8.1",
-  "main": "server.js",
-  "dependencies": {
-    "jerk": "~1.1.23",
-    "mongoose": "~2.7.2"
-  },
-  "devDependencies": {},
-  "optionalDependencies": {},
-  "engines": {
-    "node": "*"
-  },
-  "scripts": {
-    "start": "node server"
-  }
+    "author": "luckysmack",
+    "name": "metbot",
+    "description": "IRC bot for irc.freeonode.net/meteor",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": "https://github.com/luckysmack/metbot",
+    "node": "0.8.6",
+    "main": "metbot.js",
+    "dependencies": {
+        "jerk": "~1.1.23",
+        "mongoose": "~2.7.2"
+    },
+    "devDependencies": {},
+    "optionalDependencies": {},
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "start": "node metbot"
+    }
 }
