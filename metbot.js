@@ -43,6 +43,26 @@ var Seen = new Schema(
   , say  :String
   }
 )
+var Channel = new Schema(
+  { channel  :{type: String, index: {unique: true, dropDups: false}}
+  , name     :String
+  , realName :String
+  , command  :
+    { key   :String
+    , Value :String
+    }
+  , log :
+    { time :String
+    , user :String
+    , say  :String
+    }
+  , seen :
+    { time :String
+    , user :{type: String, index: {unique: true, dropDups: false}}
+    , say  :String
+    }
+  }
+)
 
 var command = mongoose.model('Command', Command);
 var log     = mongoose.model('Log', Log);
