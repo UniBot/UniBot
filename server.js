@@ -44,7 +44,7 @@ jerk( function( j ) {
 	
 	// List all active commands
 	j.watch_for( /^!list/i, function ( message ) {
-		message.say( 'Existing Commands: ' + Object.keys(list).join(', ') );
+		message.say( 'Existing Commands: ' + Object.keys(list).sort().join(', ') );
 	});
 	
 	// ![nonSpace] [optional arg] [@optionalNick]
