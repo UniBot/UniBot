@@ -2,7 +2,7 @@
   "author": "proloser",
   "name": "ui-bot",
   "description": "IRC bot for irc.freeonode.net/angularjs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "homepage": "http://angular-ui.github.com",
   "node": "0.8.1",
