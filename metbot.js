@@ -8,21 +8,22 @@
 var http     = require('http');
 var jerk     = require('jerk');
 var mongoose = require('mongoose');
+var conn     = require('./connection.js');
 var td       = require('./timeDifference.js');
 var options =
   { server          :'irc.freenode.net'
   , nick            :'met-bot'
   , log             :false
-  , channels        :['#se7en6', '#meteor']
+  , channels        :['#']
   , flood_protection:true
   , user            :
     { username:'met-bot'
-    , realname:'AngularUI Bot'
+    , realname:'Universal Node.JS Interactive Bot'
     }
   };
 
 // Setup Mongo
-mongoose.connect("mongodb://metbot:c0MMand0@127.0.0.1:27017/ircbot");
+mongoose.connect(conn);
 var Schema = mongoose.Schema;
 
 var Command = new Schema(
