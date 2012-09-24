@@ -7,95 +7,32 @@
 // requires node's http module
 var http     = require('http');
 var jerk     = require('jerk');
-var mongoose = require('mongoose');
-var conn     = require('./connection.js');
-var td       = require('./timeDifference.js');
-var options =
-  { server          :'irc.freenode.net'
-  , nick            :'met-bot'
-  , log             :false
-  , channels        :['#']
-  , flood_protection:true
-  , user            :
-    { username:'met-bot'
-    , realname:'Universal Node.JS Interactive Bot'
-    }
-  };
-
-// Setup Mongo
-mongoose.connect(conn);
-var Schema = mongoose.Schema;
-
-var Command = new Schema(
-  { key  :String
-  , value:String
-  }
-);
-var Log = new Schema(
-  { time :String
-  , user :String
-  , say  :String
-  }
-)
-var Seen = new Schema(
-  { time :String
-  , user :{type: String, index: {unique: true, dropDups: false}}
-  , say  :String
-  }
-)
-var Channel = new Schema(
-  { channel  :{type: String, index: {unique: true, dropDups: false}}
-  , name     :String
-  , realName :String
-  , command  :
-    { key   :String
-    , Value :String
-    }
-  , log :
-    { time :String
-    , user :String
-    , say  :String
-    }
-  , seen :
-    { time :String
-    , user :{type: String, index: {unique: true, dropDups: false}}
-    , say  :String
-    }
-  }
-)
-
-var command = mongoose.model('Command', Command);
-var log     = mongoose.model('Log', Log);
-var seen    = mongoose.model('Seen', Seen);
+var models = require('./models');
+var config   = require('./config');
+var td       = require('./timeDifference');
 
 jerk( function( j ) {
   // Cache of active commands
-  var cmdList = {}
-    , logList = {}
-    , sawList = {}
+  var cmdList = {},
+      logList = {},
+      sawList = {};
 
   // Load all commands from Mongo
-  command.find({}, function (err, docs)
-  {
+  models.command.find({}, function(err, docs){
     var length = docs.length;
-    if (length)
-    {
-      console.log('found commands: ')
-      docs.forEach(function (cmd)
-      {
+    if (length) {
+      console.log('found commands: ');
+      docs.forEach(function(cmd){
         cmdList[cmd.key] = cmd.value;
-        console.log(' -> ' + cmdList[cmd.key])
+        console.log(' -> ' + cmdList[cmd.key]);
       });
     }
   });
 
-  seen.find({}, function (err, docs)
-  {
+  models.seen.find({}, function(err, docs){
     var length = docs.length;
-    if (length)
-    {
-      docs.forEach(function (saw)
-      {
+    if (length) {
+      docs.forEach(function(saw){
         sawList[saw.user] = {user:saw.user, time:saw.time, say:saw.say};
       });
     }
@@ -103,46 +40,41 @@ jerk( function( j ) {
 
   // when anything is said, we track it
   j.watch_for( /(.*)/gi, function ( message ) {
-    var what = message.match_data
-    var date = new Date();
+    var what = message.match_data,
+        date = new Date();
     date = date.toString();
-    var saw = new seen({user:message.user, time:date, say:what});
-    var trk = new log( {user:message.user, time:date, say:what});
+    var saw = new models.seen({user:message.user, time:date, say:what});
+    var trk = new models.log({user:message.user, time:date, say:what});
 
-    if (sawList[message.user])
-    {
+    if (sawList[message.user]) {
       sawList[message.user] = {user:message.user, time:date, say:what};
-      seen.find({user: message.user}).remove()
+      models.seen.find({user: message.user}).remove();
     }
     // keep a log
-    trk.save(function(err)
-    {
-    })
+    trk.save(function(err){
+
+    });
 
     // save in the seen db
-    saw.save(function(err)
-    {
+    saw.save(function(err){
       sawList[message.user] = {user:message.user, time:date, say:what};
-    })
+    });
   });
 
   // List all active commands
   j.watch_for( /^!list/i, function ( message ) {
-    message.say( 'Existing Commands: ' + Object.keys(cmdList).join(', ') );
+    message.say( 'Existing Commands: ' + Object.keys(cmdList).sort().join(', ') );
   });
 
   // !seen optionalNick
   j.watch_for( /!seen (\S+)/i , function ( message ) {
     var saw = message.match_data[1];
 
-    if (sawList[saw])
-    {
+    if (sawList[saw]) {
       var current = new Date();
       var old = new Date(sawList[saw].time);
-      message.say(saw + ' was last seen at ' + td(current, old) + ' saying: ' + sawList[saw].say)
-    }
-    else
-    {
+      message.say(saw + ' was last seen at ' + td(current, old) + ' saying: ' + sawList[saw].say);
+    } else {
       message.say('Sorry, I have not seen the user: ' + saw);
     }
   });
@@ -182,7 +114,7 @@ jerk( function( j ) {
   j.watch_for( /^!remember (\S+) is (.+)/i, function ( message ) {
     var key = message.match_data[1];
     key = key.toLowerCase();
-    var cmd = new command({ key: key, value: message.match_data[2] });
+    var cmd = new models.command({ key: key, value: message.match_data[2] });
     if (cmdList[cmd.key]) {
       message.say( message.user + ': "'+cmd.key+'" already exists');
       return;
@@ -197,8 +129,8 @@ jerk( function( j ) {
   j.watch_for( /^!forget (\S+)/i, function ( message ) {
     var key = message.match_data[1];
     key = key.toLowerCase();
-    command.remove({ key: key }, function(err) {
-      delete list[key];
+    models.command.remove({ key: key }, function(err) {
+      delete cmdList[key];
       message.say( 'The "'+key+'" command has been removed' );
     });
   });
@@ -207,9 +139,9 @@ jerk( function( j ) {
   j.watch_for( /^!show (\S+)/i, function ( message ) {
     var key = message.match_data[1];
     key = key.toLowerCase();
-    message.say( key+' is "'+list[key]+'"' );
+    message.say( key+' is "'+cmdList[key]+'"' );
   });
-}).connect(options);
+}).connect(config.irc);
 
 
 
@@ -229,4 +161,4 @@ http.createServer(function (req, res) {
 
   // close the response
   res.end();
-}).listen(20129); // the server will listen on port 80
+}).listen(config.port); // the server will listen on port 80
