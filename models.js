@@ -1,4 +1,6 @@
 // Setup Mongo
+var mongoose = require('mongoose');
+var config   = require('./config');
 mongoose.connect(config.mongo);
 var Schema = mongoose.Schema;
 

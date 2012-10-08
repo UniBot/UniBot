@@ -24,7 +24,7 @@ jerk( function( j ) {
       console.log('found commands: ');
       docs.forEach(function(cmd){
         cmdList[cmd.key] = cmd.value;
-        console.log(' -> ' + cmdList[cmd.key]);
+        console.log(cmd.key + ' -> ' + cmdList[cmd.key]);
       });
     }
   });
