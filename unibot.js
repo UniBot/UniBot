@@ -7,15 +7,17 @@
 // requires node's http module
 var http     = require('http');
 var jerk     = require('jerk');
-var models = require('./models');
+var express  = require('express');
+var models   = require('./models');
 var config   = require('./config');
 var td       = require('./timeDifference');
 
+// Cache of active commands
+var cmdList = {},
+    logList = {},
+    sawList = {};
+
 jerk( function( j ) {
-  // Cache of active commands
-  var cmdList = {},
-      logList = {},
-      sawList = {};
 
   // Load all commands from Mongo
   models.command.find({}, function(err, docs){
@@ -67,7 +69,7 @@ jerk( function( j ) {
   });
 
   // !seen optionalNick
-  j.watch_for( /!seen (\S+)/i , function ( message ) {
+  j.watch_for( /!seen (\S+)/i , function( message ) {
     var saw = message.match_data[1];
 
     if (sawList[saw]) {
@@ -96,18 +98,6 @@ jerk( function( j ) {
       }
       message.say( msg.split(':nick').join(user).split(':arg').join(arg) );
     }
-  });
-
-  // @[nick] meet met-bot
-  j.watch_for( /@(\S+) ?(meet met-bot)/i , function ( message ) {
-    console.log('0: ' + message.match_data[0]);
-    console.log('1: ' + message.match_data[1]);
-    var who = message.match_data[1];
-    who = who.toLowerCase();
-
-    var arg = message.match_data[2] || '';
-
-    message.say( 'hello ' + who + ' ... nice pants' );
   });
 
   // !remember [nonSpace] id [value containing optional :nick and :arg]
@@ -144,21 +134,40 @@ jerk( function( j ) {
 }).connect(config.irc);
 
 
+// Webserver
+//
+app = express();
+app.configure(function(){
+  app.use(express.static('public'));
+});
+app.get('/commands', function(req, res, next){
+  res.send(cmdList);
+});
+app.post('/commands', function(req, res, next){
+  var key = req.body.key;
+    key = key.toLowerCase();
+    var cmd = new models.command({ key: key, value: req.body.value });
+    if (cmdList[cmd.key]) {
+      res.end(409);
+    }
+    cmd.save(function(err) {
+      cmdList[cmd.key] = cmd.value;
+      res.end(201);
+    });
+});
+app.delete('/commands/:key', function(req, res, next){
+  var key = req.params.key;
+  key = key.toLowerCase();
+  models.command.remove({ key: key }, function(err) {
+    delete cmdList[key];
+    res.end(204);
+  });
+});
+app.get('/logs', function(req, res, next){
+  res.send(logList);
+});
+app.get('/seen', function(req, res, next){
+  res.send(sawList);
+});
 
-
-// BELOW CODE IS JUST TO MAKE NODEJITSU HAPPY //
-
-// creates a new httpServer instance
-http.createServer(function (req, res) {
-  // this is the callback, or request handler for the httpServer
-
-  // respond to the browser, write some headers so the
-  // browser knows what type of content we are sending
-  res.writeHead(200, {'Content-Type': 'text/html'});
-
-  // write some content to the browser that your user will see
-  res.write('<h1>hello, i know nodejitsu.</h1>');
-
-  // close the response
-  res.end();
-}).listen(config.port); // the server will listen on port 80
+app.listen(config.port);

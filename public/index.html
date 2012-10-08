@@ -7,48 +7,46 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="https://raw.github.com/twitter/bootstrap/master/docs/assets/js/bootstrap.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
   <script src="https://raw.github.com/angular-ui/angular-ui/master/build/angular-ui.js"></script>
   <script src="app.js"></script>
 </head>
 <body ng-controller="MainCtrl">
-  Hello {{name}}!
+  <h1>UniBot</h1>
   <form ng-submit="save(data)">
-    <table class="zebra">
+    <table class="zebra table">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Command</th>
           <th>Value</th>
-          <th>Actions</th>
+          <!-- <th class="span3">Actions</th> -->
+        </tr>
+        <!-- <tr>
+          <th colspan="3">
+            <input ng-model="search" type="text" placeholder="Search" style="width:90%">
+          </th>
         </tr>
         <tr>
-          <th>&nbsp;</th>
           <th>
-            <input type="text" required ng-model="data.command" placeholder="Command">
+            <input class="span2" type="text" required ng-model="data.key" placeholder="Command">
           </th>
           <th>
-            <textarea required ng-model="data.value" placeholder="Value"></textarea>
+            <input type="text" required ng-model="data.value" placeholder="Value">
           </th>
-          <th>
-            <ul>
-              <li><input type="submit" value="Save"></li>
-              <li><input type="reset" value="Cancel"></li>
-            </ul>
+          <th class="btn-group">
+            <button class="btn btn-primary" type="submit"><i class="icon-plus-sign icon-white"></i> Save</button>
+            <input class="btn" type="reset" value="Cancel">
           </th>
-        </tr>
+        </tr> -->
       </thead>
       <tbody>
-        <tr ng-repeat="command in commands">
-          <td>{{command.id}}</td>
-          <td>{{command.command}}</td>
-          <td>{{command.value}}</td>
-          <td>
-            <ul>
-              <li><a ng-click="edit(command)">Edit</a></li>
-              <li><a ng-click="delete(command)">Delete</a></li>
-            </ul>
-          </td>
+        <tr ng-repeat="(command, value) in commands | filter:search">
+          <td>{{command}}</td>
+          <td>{{value}}</td>
+          <!-- <td class="btn-group">
+            <a class="btn btn-info btn-small" ng-click="edit(command)"><i class="icon-edit icon-white"></i> Edit</a>
+            <a class="btn btn-danger btn-small" ng-click="delete(command)"><i class="icon-remove icon-white"></i> Delete</a>
+          </td> -->
         </tr>
       </tbody>
     </table>
