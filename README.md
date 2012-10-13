@@ -13,4 +13,4 @@ A multi-channel (and eventually multi-server) IRC bot built with Node.js.
 
 1. Customize the `options` variable (you may want to turn logging on)
 2. `npm install`
-3. `node ircbot.js`
+3. `node unibot.js`
