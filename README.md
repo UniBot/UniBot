@@ -1,6 +1,6 @@
 # UNiversal Irc Bot
 
-A multi-channel (and eventually mult-server) IRC bot for.
+A multi-channel (and eventually multi-server) IRC bot built with Node.js.
 
 ### Notes
 
