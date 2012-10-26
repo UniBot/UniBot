@@ -43,7 +43,7 @@
       <tbody>
         <tr ng-repeat="(command, value) in commands | filter:search">
           <td>{{command}}</td>
-          <td>{{value}}</td>
+          <td>{{value | linky}}</td>
           <!-- <td class="btn-group">
             <a class="btn btn-info btn-small" ng-click="edit(command)"><i class="icon-edit icon-white"></i> Edit</a>
             <a class="btn btn-danger btn-small" ng-click="delete(command)"><i class="icon-remove icon-white"></i> Delete</a>
