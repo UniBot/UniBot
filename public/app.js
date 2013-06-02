@@ -3,7 +3,7 @@
  *
  * UniBot AngularJS Site
  */
-angular.module('unibot', ['ui']).
+angular.module('unibot', ['ngSanitize']).
 controller('MainCtrl', ['$scope', '$http', function($scope, $http){
   $http.get('/commands').success(function(response, code){
     $scope.commands = response;
@@ -14,8 +14,8 @@ controller('MainCtrl', ['$scope', '$http', function($scope, $http){
       $scope.commands[data.key] = data.value;
     });
   };
-  $scope.delete = function(key) {
-    $http.delete('/commands/'+key).success(function(){
+  $scope['delete'] = function(key) {
+    $http['delete']('/commands/'+key).success(function(){
       delete $scope.commands[key];
     });
   };
