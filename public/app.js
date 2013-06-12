@@ -6,7 +6,10 @@
 angular.module('unibot', ['ngSanitize']).
 controller('MainCtrl', ['$scope', '$http', function($scope, $http){
   $http.get('/commands').success(function(response, code){
-    $scope.commands = response;
+    $scope.commands = [];
+    angular.forEach(response, function(value, key){
+      $scope.commands.push({key:key,value:value});
+    });
   });
   $scope.editing = false;
   $scope.save = function(data) {
