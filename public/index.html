@@ -41,7 +41,7 @@
       <tbody>
         <tr ng-repeat="command in commands | filter:search">
           <td>{{command.key}}</td>
-          <td>{{command.value | linky}}</td>
+          <td ng-bind-html-unsafe="command.value | linky"></td>
           <!-- <td class="btn-group">
             <a class="btn btn-info btn-small" ng-click="edit(command)"><i class="icon-edit icon-white"></i> Edit</a>
             <a class="btn btn-danger btn-small" ng-click="delete(command)"><i class="icon-remove icon-white"></i> Delete</a>
