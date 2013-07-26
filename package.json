@@ -1,6 +1,6 @@
 {
   "author": "proloser,luckysmack",
-  "name": "uibot",
+  "name": "unibot",
   "description": "The Universal IRC Bot (for FreeNode)",
   "version": "0.1.1",
   "private": true,
@@ -20,5 +20,5 @@
   "scripts": {
     "start": "node unibot.js"
   },
-  "subdomain": "UniBot"
+  "subdomain": "unibot"
 }
