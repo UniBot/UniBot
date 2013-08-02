@@ -9,15 +9,15 @@
  */
 module.exports = process.env.UNIBOT_CONFIG || {
   "port" : 20415,
-  "mongo" : process.env.UNIBOT_MONGO || "mongodb://username:pass@host:27017/dbname",
+  "mongo" : process.env.UNIBOT_MONGO || "mongodb://nodejitsu:ad6d282c750802b49ec763a0cb191559@linus.mongohq.com:10030/nodejitsudb7006161983",
   "irc" : {
     "server" : "irc.freenode.net",
-    "nick" : "unibot",
+    "nick" : "uibot",
     "log" : false,
-    "channels" : ['#somechannel'],
+    "channels" : ['#angularjs'],
     "flood_protection" : true,
     "user" : {
-      "username" : "unibot",
+      "username" : "uibot",
       "realname" : "Universal IRC Bot"
     }
   }
