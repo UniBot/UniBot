@@ -12,6 +12,17 @@
 <body ng-controller="MainCtrl">
   <h1>UniBot</h1>
   <h4><a href="https://github.com/UniBot/UniBot">Source Code</a></h4>
+  
+  <h3>Help</h3>
+  <ul>
+    <li><strong>Trigger Command:</strong> <code>![command] @[optionalNick] [optional arguments]</code></li>
+    <li><strong>Create Command:</strong> <code>!remember [command] is [string with optional :arg and :nick tokens]</code></li>
+    <li><strong>Delete Command:</strong> <code>!forget [command]</code></li>
+    <li><strong>Show Raw Command:</strong> <code>!show [command]</code></li>
+  </ul>
+  
+  
+  <h3>Commands</h3>
   <form ng-submit="save(data)">
     <table class="zebra table">
       <thead>
