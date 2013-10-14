@@ -8,9 +8,9 @@
 var http     = require('http');
 var jerk     = require('jerk');
 var express  = require('express');
-var models   = require('./models');
+var models   = require('./lib/models');
 var config   = require('./config');
-var td       = require('./timeDifference');
+var td       = require('./lib/timeDifference');
 
 // Cache of active commands
 var cmdList = {},

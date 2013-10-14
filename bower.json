@@ -1,0 +1,19 @@
+{
+  "name": "UniBot",
+  "main": "unibot.js",
+  "version": "0.1.2",
+  "homepage": "https://github.com/UniBot/UniBot",
+  "authors": [
+    "Dean Sofer <proloser@hotmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ]
+}

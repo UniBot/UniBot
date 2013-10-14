@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>UniBot for Freenode</title>
-  <link href="css/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular-sanitize.min.js"></script>
-  <script src="app.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular-sanitize.min.js"></script>
+  <script src="js/app.js"></script>
 </head>
 <body ng-controller="MainCtrl">
   <h1>UniBot</h1>
@@ -32,7 +32,7 @@
           <!-- <th class="span3">Actions</th> -->
         </tr>
         <!-- <tr>
-          <th colspan="3">
+          <th colspan="1">
             <input ng-model="search" type="text" placeholder="Search" style="width:90%">
           </th>
         </tr>
@@ -50,7 +50,7 @@
         </tr> -->
       </thead>
       <tbody>
-        <tr ng-repeat="command in commands | filter:search">
+        <tr ng-repeat="command in commands | filter : search">
           <td>{{command.key}}</td>
           <td ng-bind-html-unsafe="command.value | linky"></td>
           <!-- <td class="btn-group">
