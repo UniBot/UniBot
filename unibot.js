@@ -23,10 +23,8 @@ jerk( function( j ) {
   models.command.find({}, function(err, docs){
     var length = docs.length;
     if (length) {
-      console.log('found commands: ');
       docs.forEach(function(cmd){
         cmdList[cmd.key] = cmd.value;
-        console.log(cmd.key + ' -> ' + cmdList[cmd.key]);
       });
     }
   });
