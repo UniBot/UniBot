@@ -6,12 +6,11 @@
 
 // requires node's http module
 var http     = require('http');
-var jerk     = require('jerk');
 var express  = require('express');
-var models   = require('./lib/models');
 var config   = require('./config');
-var td       = require('./lib/timeDifference');
 
+
+/*
 // Cache of active commands
 var cmdList = {},
     logList = {},
@@ -168,4 +167,38 @@ app.get('/seen', function(req, res, next){
   res.send(sawList);
 });
 
-app.listen(config.port);
+
+
+/* First, lets create an IRC Client.
+ * The quickest way is to use the laziness function `irc.connect()`.
+ * It takes an object configuring the bot, and returns a Client instance.
+ */
+
+var irc = require("irc");
+var commands = require("./lib/commands");
+
+var bot = new irc.Client(config.server, config.irc.userName, config.irc);
+
+commands.bot = bot;
+
+bot.addListener("pm", function(from, message) {
+  var params = message.split(' ');
+  if (params.length > 1 && commands.pm[params[0]]) {
+    commands.pm[params[0]](from, params);
+  }
+});
+
+bot.addListener("message#", function(from, channel, message) {
+  var params = message.split(' ');
+  if (commands.pm[params[0]]) {
+    commands.message[params[0]](from, channel, params);
+  } else if (commands.channels[channel].commands[params[0]]) {
+    commands.say[params[0]](from, channel, params);
+  }
+});
+
+bot.addListener("error", function() {
+  console.log('error', arguments);
+});
+
+// app.listen(config.port);
