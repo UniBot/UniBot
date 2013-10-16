@@ -192,7 +192,8 @@ bot.addListener("message#", function(from, channel, message) {
   var params = message.split(' ');
   if (commands.message[params[0]]) {
     commands.message[params[0]](from, channel, params);
-  } else if (commands.channels[channel] && commands.channels[channel].commands && commands.channels[channel].commands[params[0]]) {
+  } else if (commands.channels[channel] && commands.channels[channel].commands[params[0]]) {
+    console.log('say', params[0]);
     commands.say[params[0]](from, channel, params);
   }
 });
