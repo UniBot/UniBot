@@ -19,7 +19,7 @@ module.exports = process.env.UNIBOT_CONFIG || {
     showErrors: false,
     autoRejoin: true,
     autoConnect: true,
-    channels: ['#angularjs'],
+    channels: [],
     secure: false,
     selfSigned: false,
     certExpired: false,
