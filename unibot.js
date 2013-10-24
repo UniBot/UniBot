@@ -29,8 +29,10 @@ bot.addListener("message#", function(from, channel, message) {
   }
 });
 
-bot.addListener("error", function() {
-  console.log('error', arguments);
+bot.addListener("error", function(error) {
+  console.log('error', error);
+  if (config.owner && commands.bot)
+    commands.bot.say(config.owner, "ERROR: "+error);
 });
 
 // app.listen(config.port);

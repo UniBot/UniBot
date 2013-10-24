@@ -2,13 +2,14 @@
   "author": "proloser,luckysmack",
   "name": "unibot",
   "description": "The Universal IRC Bot (for FreeNode)",
-  "version": "0.2",
+  "version": "0.2.0",
   "private": true,
   "homepage": "http://github.com/unibot/unibot",
   "node": "0.10.10",
   "main": "unibot.js",
   "dependencies": {
     "mongoose": "~3.6.20",
+    "irc": "~0.3",
     "express": "~3.4.0"
   },
   "devDependencies": {},

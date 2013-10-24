@@ -9,10 +9,10 @@
  */
 module.exports = process.env.UNIBOT_CONFIG || {
   "port" : 20415,
-  "mongo" : process.env.UNIBOT_MONGO || "mongodb://nodejitsu:ad6d282c750802b49ec763a0cb191559@linus.mongohq.com:10030/nodejitsudb7006161983",
+  "mongo" : process.env.UNIBOT_MONGO || "mongodb://localhost:27017/unibot",
   server: 'irc.freenode.net',
   "irc" : {
-    userName: 'unibot',
+    userName: 'newbot',
     realName: 'UniBot Freenode Bot',
     port: 6667,
     debug: false,
