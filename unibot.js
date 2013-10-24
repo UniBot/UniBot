@@ -13,6 +13,12 @@ var bot = new irc.Client(config.server, config.irc.userName, config.irc);
 
 commands.bot = bot;
 
+bot.addListener("registered", function(message){
+  if (config.owner && commands.bot)
+    commands.bot.say(config.owner, "Connected!");
+  commands.join();
+});
+
 bot.addListener("pm", function(from, message) {
   var params = message.split(' ');
   if (params.length > 1 && commands.pm[params[0]]) {
@@ -32,7 +38,7 @@ bot.addListener("message#", function(from, channel, message) {
 bot.addListener("error", function(error) {
   console.log('error', error);
   if (config.owner && commands.bot)
-    commands.bot.say(config.owner, "ERROR: "+error);
+    commands.bot.say(config.owner, "ERROR: "+error.args.join(' : '));
 });
 
 // app.listen(config.port);
