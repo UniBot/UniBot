@@ -1,0 +1,14 @@
+{
+  "name": "angular",
+  "homepage": "https://github.com/angular-ui/angular",
+  "version": "1.1.5",
+  "_release": "1.1.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.5",
+    "commit": "b31e3c49bee9b17865c876e089a288b44553fe7b"
+  },
+  "_source": "git://github.com/angular-ui/angular.git",
+  "_target": "~1.1.5",
+  "_originalSource": "angular-ui/angular"
+}

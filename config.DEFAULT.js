@@ -12,6 +12,7 @@ module.exports = process.env.UNIBOT_CONFIG || {
   "mongo" : process.env.UNIBOT_MONGO || "mongodb://username:pass@host:27017/dbname",
   "server": 'irc.freenode.net',
   "owner": "ProLoser", // Used for pming error notifications on IRC
+  "debug": true,
   "irc" : {
     "userName": 'mybot',
     "realName": 'UniBot Freenode Bot',
@@ -20,7 +21,7 @@ module.exports = process.env.UNIBOT_CONFIG || {
     "showErrors": false,
     "autoRejoin": true,
     "autoConnect": true,
-    "channels": [],
+    "channels": [], // Leave Empty
     "secure": false,
     "selfSigned": false,
     "certExpired": false,

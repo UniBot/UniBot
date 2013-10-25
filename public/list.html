@@ -1,0 +1,13 @@
+<h3>Channels</h3>
+<form class="form-group">
+	<div class="input-group">
+		<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+		<input class="form-control" ng-model="filter" placeholder="Filter" type="search">
+	</div>
+</form>
+<div class="list-group">
+  <a ng-href="#/channel/{{channel._id}}" class="list-group-item"  ng-repeat="channel in channels | orderBy: 'name' | filter : filter">
+  	<span class="badge">{{channel.commandCount}}</span>
+    {{channel.name}}
+  </a>
+</div>

@@ -13,5 +13,11 @@
     "node_modules",
     "public/bower_components",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.0",
+    "angular": "angular-ui/angular#~1.1.5",
+    "angular-bootstrap": "~0.6.0",
+    "lodash": "~2.2.1"
+  }
 }

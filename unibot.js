@@ -5,4 +5,4 @@
  */
 
 require('./lib/bot');
-// require('./lib/webserver');
+require('./lib/webserver');
