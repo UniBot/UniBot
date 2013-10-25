@@ -15,4 +15,4 @@ A multi-channel (and eventually multi-server) IRC bot built with Node.js.
 2. `npm install`
 3. `node unibot.js`
 4. Private message the bot on IRC and say `register #someChannel` to get started
-5. After the bot joins the channel, say `!remember commandName command vluae`
+5. After the bot joins the channel, say `!remember commandName command value`
