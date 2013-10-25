@@ -10,7 +10,8 @@
   "dependencies": {
     "mongoose": "~3.6.20",
     "irc": "~0.3",
-    "express": "~3.4.0"
+    "express": "~3.4.0",
+    "lodash": "~2.2.1"
   },
   "devDependencies": {},
   "optionalDependencies": {},
