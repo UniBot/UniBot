@@ -64,4 +64,4 @@ Grouped by Plugin
 
 * `!remember [command] is [text with optional :tokens and :nick]` Create a **!command**
 * `!forget [command]` Delete a **!command**
-* `![command] [optional tokens]` Say a command
+* `[nick:] ![command] [tokens]` Say a command
