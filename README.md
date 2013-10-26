@@ -17,4 +17,29 @@ Requires MongoDB
 2. `npm install`
 3. `node unibot.js`
 4. Private message the bot on IRC and say `register #someChannel` to get started
-5. After the bot joins the channel, say `!remember [command] is [some value]` without brackets
+5. After the bot joins the channel, say `!remember [command] is [some value]`
+
+## Plugins
+
+Create new plugins in `lib/plugins`
+
+* Add plugins by private messaging the bot `plugin [channel] [plugin]`
+* Remove plugins by private messaging the bot `unplug [channel] [plugin]`
+
+### Example:
+
+**github.js**
+```
+module.exports = function(channel){
+  return {
+  	// Regular expression to match
+    "#([0-9]+)": function(from, matches) {
+    	// do logic ...
+    	channel.say('Some message'); // pass a recipient name as an optional second argument
+    },
+    "...": function(from, matches) {
+      	...
+	}
+  };
+};
+```
