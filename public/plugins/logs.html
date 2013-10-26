@@ -1,0 +1,14 @@
+<div ng-controller="LogsCtrl">
+	<h3>Logs</h3>
+	<form class="form-group">
+		<div class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+			<input class="form-control" ng-model="filter" placeholder="Filter" type="search">
+		</div>
+	</form>
+	<ul>
+		<li ng-repeat="log in logs | filter: filter" title="{{log.timestamp | date}}">
+			<strong>{{log.from}}:</strong> <span ng-bind-html="log.message | linky"></span>
+		</li>
+	</ul>
+</div>

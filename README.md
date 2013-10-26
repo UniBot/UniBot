@@ -16,8 +16,8 @@ Requires MongoDB
 1. Create your own `config.js` from `config.DEFAULT.js` (and change the bot name)
 2. `npm install`
 3. `node unibot.js`
-4. Private message the bot on IRC and say `register #someChannel` to get started
-5. After the bot joins the channel, say `!remember [command] is [some value]`
+4. [Register the channel](#PM)
+5. [Install plugins](#PM)
 
 ## Plugins
 
@@ -57,7 +57,11 @@ module.exports = function(channel){
 
 Grouped by Plugin
 
-#### Core
+#### Commands
+
+**Note:** `:tokens` are replaced with any text after the command name. Spaces are replaced with `+` characters (for search-engine friendliness)
+**Note:** `:nick` is replaced with the name of the user who sent the message
 
 * `!remember [command] is [text with optional :tokens and :nick]` Create a **!command**
 * `!forget [command]` Delete a **!command**
+* `![command] [optional tokens]` Say a command

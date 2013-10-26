@@ -1,12 +1,3 @@
-<h3>Channel: {{channel.name}}</h3>
-<form class="form-group">
-	<div class="input-group">
-		<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-		<input class="form-control" ng-model="filter" placeholder="Filter" type="search">
-	</div>
-</form>
-<ul>
-	<dl class="dl-horizontal" ng-repeat="command in commands | orderBy: 'key' | filter: filter">
-		<dt>{{command.key}}:</dt> <dd ng-bind-html="command.value | linky"></dd>
-	</dl>
-</ul>
+<h2>{{channel.name}}</h2>
+<p><strong>Plugins:</strong> {{channel.plugins.join(', ')}}</p>
+<ng-include ng-repeat="plugin in channel.plugins" src="'plugins/'+plugin+'.html'"></ng-include>
