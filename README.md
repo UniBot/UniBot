@@ -17,4 +17,4 @@ Requires MongoDB
 2. `npm install`
 3. `node unibot.js`
 4. Private message the bot on IRC and say `register #someChannel` to get started
-5. After the bot joins the channel, say `!remember [command] is [some value]` without brackets
+5. After the bot joins the channel, say `!remember [command] is [some value]`
