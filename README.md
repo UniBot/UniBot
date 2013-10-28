@@ -16,8 +16,8 @@ Requires MongoDB
 1. Create your own `config.js` from `config.DEFAULT.js` (and change the bot name)
 2. `npm install`
 3. `node unibot.js`
-4. [Register the channel](#PM)
-5. [Install plugins](#PM)
+4. [Register the channel](#pm)
+5. [Install plugins](#plugins)
 
 ## Plugins
 
