@@ -1,3 +1,7 @@
 <h2>{{channel.name}}</h2>
-<p><strong>Plugins:</strong> {{channel.plugins.join(', ')}}</p>
-<ng-include ng-repeat="plugin in channel.plugins" src="'plugins/'+plugin+'.html'"></ng-include>
+<ul class="nav nav-tabs">
+  <li class="disabled"><a>Plugins:</a></li>
+  <li ng-repeat="plugin in channel.plugins" ng-class="{active:tab==plugin}"><a ng-click="$parent.tab=plugin">{{plugin[0].toUpperCase()+plugin.substr(1)}}</a></li>
+</ul>
+<br>
+<ng-include ng-repeat="plugin in channel.plugins" src="tab==plugin&&'plugins/'+plugin+'.html'"></ng-include>

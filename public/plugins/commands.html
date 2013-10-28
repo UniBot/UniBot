@@ -1,4 +1,3 @@
-<h3>Commands</h3>
 <form class="form-group">
 	<div class="input-group">
 		<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
@@ -6,5 +5,5 @@
 	</div>
 </form>
 <dl class="dl-horizontal" ng-repeat="command in commands | orderBy: 'key' | filter: filter">
-	<dt>{{command.key}}:</dt> <dd ng-bind-html="command.value | linky"></dd>
+	<dt>{{command.key}}:</dt> <dd ng-bind="command.value"></dd>
 </dl>
