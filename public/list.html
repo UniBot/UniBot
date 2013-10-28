@@ -7,7 +7,7 @@
 </form>
 <div class="list-group">
   <a ng-href="#/channel/{{channel._id}}" class="list-group-item"  ng-repeat="channel in channels | orderBy: 'name' | filter : {name:filter}">
-  	<span class="badge">{{channel.commandCount}}</span>
+  	<span class="badge">Plugins: {{channel.plugins.length}}</span>
     {{channel.name}}
   </a>
 </div>

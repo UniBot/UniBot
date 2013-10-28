@@ -36,9 +36,21 @@ app.controller('ListCtrl', function($scope, channels){
 });
 app.controller('ViewCtrl', function($scope, channel){
   $scope.channel = channel;
-  $scope.commands = [];
-  angular.forEach(channel.commands, function(value, key){
-    $scope.commands.push({key:key,value:value});
+});
+app.controller('CommandsCtrl', function($scope, $http){
+  $http.get('/commands/'+$scope.channel._id).then(function(res){
+    $scope.commands = [];
+    angular.forEach(res.data.commands, function(value, key){
+      $scope.commands.push({key:key,value:value});
+    });
+  });
+});
+app.controller('KarmaCtrl', function($scope, $http){
+  $http.get('/karma/'+$scope.channel._id).then(function(res){
+    $scope.karmas = [];
+    angular.forEach(res.data.karma, function(value, key){
+      $scope.karmas.push({key:key,value:value});
+    });
   });
 });
 app.controller('LogsCtrl', function($scope, $http){
