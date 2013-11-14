@@ -3,7 +3,7 @@
  *
  * UniBot AngularJS Site
  */
-app = angular.module('unibot', ['ngSanitize']);
+app = angular.module('unibot', ['ngSanitize', 'ui.bootstrap.pagination', 'template/pagination/pagination.html']);
 app.config(function($routeProvider){
   $routeProvider.when('/', {
     templateUrl: 'list.html',
@@ -56,5 +56,9 @@ app.controller('KarmaCtrl', function($scope, $http){
 app.controller('LogsCtrl', function($scope, $http){
   $http.get('/logs/'+$scope.channel._id).then(function(res){
     $scope.logs = res.data && res.data.logs;
+  });
+  $scope.currentPage = 1;
+  $scope.$watch('filter', function(newVal, oldVal){
+    $scope.currentPage = 1;
   });
 });

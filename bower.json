@@ -1,7 +1,7 @@
 {
   "name": "UniBot",
   "main": "unibot.js",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "homepage": "https://github.com/UniBot/UniBot",
   "authors": [
     "Dean Sofer <proloser@hotmail.com>"
@@ -17,7 +17,7 @@
   "dependencies": {
     "bootstrap": "~3.0.0",
     "angular": "angular-ui/angular#~1.1.5",
-    "angular-bootstrap": "~0.6.0",
+    "angular-bootstrap": "angular-ui/bootstrap#bootstrap3",
     "lodash": "~2.2.1"
   }
 }

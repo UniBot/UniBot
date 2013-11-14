@@ -2,7 +2,7 @@
   "author": "proloser,luckysmack",
   "name": "unibot",
   "description": "The Universal IRC Bot (for FreeNode)",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": true,
   "homepage": "http://github.com/unibot/unibot",
   "node": "0.10.10",
