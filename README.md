@@ -49,7 +49,7 @@ module.exports = function(channel){
 ### PM
 
 * `register [#channel]` Creates a new channel and joins
-* `register [#channel]` Leaves a channel and destroys the record (WARNING: Delete all commands!)
+* `unregister [#channel]` Leaves a channel and destroys the record (WARNING: Delete all commands!)
 * `plugin [#channel] [plugin]` Adds a plugin to a channel
 * `unplug [#channel] [plugin]` Removes a plugin from a channel
 
