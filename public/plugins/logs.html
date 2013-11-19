@@ -5,8 +5,8 @@
 			<input class="form-control" ng-model="filter" placeholder="Filter" type="search">
 		</div>
 	</form>
-	<pagination ng-show="logs.length" total-items="logs.length | filter: filter" page="currentPage" items-per-page="200" boundary-links="true" rotate="false" max-size="7"></pagination>
-	<p class="alert alert-info text-center">Loading...</p>
+	<pagination ng-show="$parent.logs.length" total-items="logs.length | filter: filter" page="currentPage" items-per-page="200" boundary-links="true" rotate="false" max-size="7"></pagination>
+	<p class="alert alert-info text-center" ng-hide="logs.length">Loading...</p>
 	<ul class="list-unstyled">
 		<li ng-repeat="log in (logs | filter: filter).slice((currentPage - 1) * 200, currentPage * 200)">
 			<span class="text-muted">{{log.timestamp | date : 'short'}}</span>
