@@ -1,7 +1,7 @@
 /**
  * UniBot Configuration
  */
-module.exports = process.env.UNIBOT || {
+module.exports = process.env.UNIBOT && JSON.parse(process.env.UNIBOT) || {
   "port" : 1337,
   "mongo" : "mongodb://localhost/unibot",
   "server": "irc.freenode.net",
