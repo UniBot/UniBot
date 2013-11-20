@@ -2,7 +2,7 @@
 <html ng-app="unibot">
 <head>
   <meta charset="utf-8">
-  <title>UniBot for Freenode</title>
+  <title>UniBot for Freenode v{{version}}</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="bower_components/lodash/dist/lodash.min.js"></script>
@@ -14,17 +14,9 @@
 <body>
 <div class="container">
   <h1> 
-    <span class="btn-group pull-right">
-      <a class="btn btn-default" ng-class="{active:help}" ng-click="help=!help">Help</a>
-      <a class="btn btn-default" href="https://github.com/UniBot/UniBot">Source Code</a>
-    </span>
-    <a href="#/">UniBot</a> <small>v0.3</small>
+    <a class="pull-right btn btn-default" href="https://github.com/UniBot/UniBot"><img src="css/github-16px.png"> Source Code</a>
+    <a href="#/">UniBot</a> <small>v{{version}}</small>
   </h1>
-  <ul ng-show="help">
-    <li><strong>Trigger Command:</strong> <code>[nick:] ![command] [tokens]</code></li>
-    <li><strong>Create Command:</strong> <code>!remember [command] is [string with optional :tokens and :nick]</code></li>
-    <li><strong>Delete Command:</strong> <code>!forget [command]</code></li>
-  </ul>
   
   <ng-view></ng-view>  
 </div>

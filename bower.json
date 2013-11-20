@@ -1,7 +1,7 @@
 {
   "name": "UniBot",
   "main": "unibot.js",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "homepage": "https://github.com/UniBot/UniBot",
   "authors": [
     "Dean Sofer <proloser@hotmail.com>"
