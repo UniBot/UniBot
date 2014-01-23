@@ -1,23 +1,23 @@
 /**
  * UniBot Configuration
  */
-module.exports = process.env.UNIBOT && JSON.parse(process.env.UNIBOT) || {
-  "port" : 1337,
-  "mongo" : "mongodb://localhost/unibot",
+ module.exports = process.env.UNIBOT && JSON.parse(process.env.UNIBOT) || {
+  "port" : 80,
+  "mongo" : "mongodb://nodejitsu:ad6d282c750802b49ec763a0cb191559@linus.mongohq.com:10030/nodejitsudb7006161983",
   "server": "irc.freenode.net",
-  "owner": false, // "ProLoser", Used for PMing error notifications on IRC
-  "debug": true, // false
+  "owner": "ProLoser",
+  "debug": true,
   "irc" : {
-    "userName": "MyBot",
-    "realName": "Universal Bot",
-    // nick: "MyBot", // Authentication
-    // password: "MyBot", // Authentication
+    "userName": "UniBot",
+    "realName": "UniBot Freenode Bot",
+    "nick": "UniBot",
+    "password": "unibot",
     "port": 6667,
-    "debug": false,
+    "debug": true,
     "showErrors": false,
     "autoRejoin": true,
     "autoConnect": true,
-    "channels": [], // Leave Empty
+    "channels": [],
     "secure": false,
     "selfSigned": false,
     "certExpired": false,
