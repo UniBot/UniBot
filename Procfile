@@ -1,1 +1,1 @@
-bot: node unibot.js
+web: node unibot.js
