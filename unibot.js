@@ -10,4 +10,4 @@ config = require('./config');
 require('./lib/bot');
 
 webserver = require('./lib/webserver');
-webserver.listen(config.port);
+webserver.listen(config.port, config.ip);

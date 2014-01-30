@@ -1,8 +1,10 @@
 /**
  * UniBot Configuration
  */
+
  module.exports = process.env.UNIBOT && JSON.parse(process.env.UNIBOT) || {
-  "port" : process.env.PORT || 5000,
+  "port" : process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+  "ip" : process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1",
   "mongo" : "mongodb://nodejitsu:ad6d282c750802b49ec763a0cb191559@linus.mongohq.com:10030/nodejitsudb7006161983",
   "server": "irc.freenode.net",
   "owner": "ProLoser",

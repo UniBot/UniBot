@@ -1,0 +1,2 @@
+// Stupid OpenShift
+require('./unibot');
