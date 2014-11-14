@@ -45,8 +45,8 @@ module.exports = function(channel){
 
 ### PM
 
-* `register [#channel]` Creates a new channel and joins
-* `unregister [#channel]` Leaves a channel and destroys the record (WARNING: Delete all commands!)
+* `register [#channel]` Joins a channel
+* `unregister [#channel]` Leaves a channel
 * `plugin [#channel] [plugin]` Adds a plugin to a channel
 * `unplug [#channel] [plugin]` Removes a plugin from a channel
 
@@ -61,4 +61,5 @@ Grouped by Plugin
 
 * `!remember [command] is [text with optional :tokens and :nick]` Create a **!command**
 * `!forget [command]` Delete a **!command**
+* `!show [command]` Shows the raw **!command**
 * `[nick:] ![command] [tokens]` Say a command
