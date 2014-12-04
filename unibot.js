@@ -7,7 +7,8 @@
 
 config = require('./config');
 
+require('mongoose').connect(config.mongo);
+
 require('./lib/bot');
 
-webserver = require('./lib/webserver');
-webserver.listen(config.port, config.ip);
+require('./lib/webserver').listen(config.port, config.ip);
