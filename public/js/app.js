@@ -8,7 +8,7 @@ app.config(function($stateProvider){
   $stateProvider.state('channels', {
     url: '/',
     templateUrl: 'list.html',
-    controller: 'ListCtrl',
+    controller: 'Channels',
     resolve: {
       channels: function($http){
         return $http.get('/channels').then(function(res){
@@ -20,7 +20,7 @@ app.config(function($stateProvider){
   $stateProvider.state('channel', {
     url: '/channel/:channelId',
     templateUrl: 'view.html',
-    controller: 'ViewCtrl',
+    controller: 'Channel',
     resolve: {
       channel: function($http, $stateParams){
         return $http.get('/channels/' +$stateParams.channelId);
@@ -37,7 +37,7 @@ app.config(function($stateProvider){
         return $http.get('/channels/'+$stateParams.channelId + '/' +$stateParams.plugin);
       }
     },
-    controller: 'PluginCtrl'
+    controller: 'Plugin'
   });
 });
 
@@ -47,19 +47,21 @@ app.run(function($rootScope, $http){
   });
 });
 
-app.controller('ListCtrl', function($scope, channels){
+app.controller('Channels', function($scope, channels){
   $scope.channels = channels;
   _.map(channels, function(channel){
     channel.commandCount = _.keys(channel.commands).length;
   })
 });
 
-app.controller('ViewCtrl', function($scope, channel){
+app.controller('Channel', function($scope, channel){
   $scope.channel = channel;
 });
 
-app.controller('PluginCtrl', function($scope){
-  
+app.controller('Plugin', function($scope, channel, plugin, _){
+  $scope.channel = channel;
+  $scope.plugin = plugin;
+  $scope._ = _;
 });
 
 app.controller('CommandsCtrl', function($scope, $http){
