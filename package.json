@@ -10,9 +10,15 @@
   "dependencies": {
     "connect": "^3.3.3",
     "connect-rest": "^1.5.1",
+    "externalip": "^1.0.0",
     "irc": "~0.3",
     "lodash": "~2.2.1",
-    "mongoose": "~3.6.20"
+    "mongoose": "~3.6.20",
+    "serve-static": "^1.7.1",
+    "unibot-commands": "git://github.com/UniBot/unibot-commands",
+    "unibot-example": "git://github.com/UniBot/unibot-example",
+    "unibot-karma": "git://github.com/UniBot/unibot-karma",
+    "unibot-logs": "git://github.com/UniBot/unibot-logs"
   },
   "devDependencies": {},
   "optionalDependencies": {},
