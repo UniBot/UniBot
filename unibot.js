@@ -10,7 +10,7 @@ var config = require('./config');
 
 var db = require('mongoose').connect(config.mongo);
 
-var web = require('./lib/webserver').listen(config.port, config.ip);
+var web = require('./lib/webserver');
 
 var bot = require('./lib/bot');
 
@@ -25,3 +25,5 @@ for (var dependency in package.dependencies) {
 		bot.addPlugin( name , plugin );
 	}
 }
+
+web.listen(config.port, config.ip)
