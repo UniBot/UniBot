@@ -3,38 +3,49 @@
  *
  * UniBot AngularJS Site
  */
-app = angular.module('unibot', ['ngSanitize', 'ui.router', 'ui.bootstrap.pagination', 'template/pagination/pagination.html']);
-app.config(function($stateProvider){
+app = angular.module('unibot', ['ngSanitize', 'ui.router']);
+app.config(function($stateProvider, $urlRouterProvider){
+
+  $urlRouterProvider.otherwise('/');
+
   $stateProvider.state('channels', {
     url: '/',
     templateUrl: 'list.html',
     controller: 'Channels',
     resolve: {
       channels: function($http){
-        return $http.get('/channels').then(function(res){
-          return res.data;
+        return $http.get('/channels').then(function(response){
+          return response.data;
         });
       }
     }
   });
   $stateProvider.state('channel', {
-    url: '/channel/:channelId',
+    url: '/channel/:channel',
     templateUrl: 'view.html',
     controller: 'Channel',
     resolve: {
       channel: function($http, $stateParams){
-        return $http.get('/channels/' +$stateParams.channelId);
+        return $http.get('/channels/' +$stateParams.channel).then(function(response){
+          return response.data;
+        }, function(err){
+          $state.go('channels');
+        });
       }
     }
   });
   $stateProvider.state('channel.plugin', {
     url: '/:plugin',
     templateUrl: function($stateParams) {
-      return 'plugins/'+$stateParams.plugin+'.html';
+      return '/'+$stateParams.plugin;
     },
     resolve: {
-      plugin: function($http, $stateParams){
-        return $http.get('/channels/'+$stateParams.channelId + '/' +$stateParams.plugin);
+      plugin: function($http, $stateParams, $state){
+        return $http.get('/'+$stateParams.plugin + '/' + $stateParams.channel).then(function(response){
+          return response.data;
+        }, function(err){
+          $state.go('channel');
+        });
       }
     },
     controller: 'Plugin'
@@ -48,6 +59,7 @@ app.run(function($rootScope, $http){
 });
 
 app.controller('Channels', function($scope, channels){
+  $scope.filter = '';
   $scope.channels = channels;
   _.map(channels, function(channel){
     channel.commandCount = _.keys(channel.commands).length;
@@ -58,10 +70,16 @@ app.controller('Channel', function($scope, channel){
   $scope.channel = channel;
 });
 
-app.controller('Plugin', function($scope, channel, plugin, _){
+app.controller('Plugin', function($scope, channel, plugin){
   $scope.channel = channel;
   $scope.plugin = plugin;
   $scope._ = _;
+  $scope.toArray = function(collection) {
+    var response = [];
+    for (var key in collection)
+      response.push({ key: key, value: collection[key] });
+    return response;
+  };
 });
 
 app.controller('CommandsCtrl', function($scope, $http){
