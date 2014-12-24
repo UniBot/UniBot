@@ -4,10 +4,26 @@
  * @license MIT
  */
 
+var package  = require('./package.json');
 
-config = require('./config');
+var config = require('./config');
 
-require('./lib/bot');
+var db = require('mongoose').connect(config.mongo);
 
-webserver = require('./lib/webserver');
-webserver.listen(config.port, config.ip);
+var web = require('./lib/webserver');
+
+var bot = require('./lib/bot');
+
+var prefix = 'unibot-';
+
+var name, plugin;
+
+for (var dependency in package.dependencies) {
+	if (dependency.substr(0, prefix.length) == prefix) {
+		name = dependency.substr(prefix.length);
+		plugin = require(dependency)({ db: db, web: web, bot: bot, config: config });
+		bot.addPlugin( name , plugin );
+	}
+}
+
+web.listen(config.port, config.ip)

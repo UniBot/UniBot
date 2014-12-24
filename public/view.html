@@ -1,7 +1,7 @@
 <h2>{{channel.name}}</h2>
 <ul class="nav nav-tabs">
   <li class="disabled"><a>Plugins:</a></li>
-  <li ng-repeat="plugin in channel.plugins" ng-class="{active:tab==plugin}"><a ng-click="$parent.tab=plugin">{{plugin[0].toUpperCase()+plugin.substr(1)}}</a></li>
+  <li ng-repeat="plugin in channel.plugins" ng-class="{active:tab==plugin}" ui-sref-active="active"><a ui-sref="channel.plugin({plugin:plugin})">{{plugin[0].toUpperCase()+plugin.substr(1)}}</a></li>
 </ul>
 <br>
-<ng-include ng-repeat="plugin in channel.plugins" src="tab==plugin&&'plugins/'+plugin+'.html'"></ng-include>
+<ui-view></ui-view>
